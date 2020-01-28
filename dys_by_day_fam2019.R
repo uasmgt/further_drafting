@@ -126,4 +126,4 @@ rm(list = setdiff(ls(), c("dys.daily14.fam2019", "dys.daily15.fam2019")))
 
 # Сохранение результатов -----------------------------------------------
 save(dys.daily14.fam2019, file = "~/data/dys_daily14_fam2019")
-save(dys.daily14.fam2019, file = "~/data/dys_daily15_fam2019")
+save(dys.daily15.fam2019, file = "~/data/dys_daily15_fam2019")

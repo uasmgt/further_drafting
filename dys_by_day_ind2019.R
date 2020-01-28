@@ -24,10 +24,10 @@ GetInfo <- function(x){
 # Обращения из-за заболеваний по дням
 DysByDayInd <- function(x){
   if (ncol(x) == 23) {
-    dys.con  <- as.numeric(x[28,  2:22])
+    dys.con  <- as.numeric(x[28,  2:23])
     tbl.day <- data.frame(rbind(dys.con))
   } else {
-    tbl.day <- data.frame(rbind(rep(NA, 21)))
+    tbl.day <- data.frame(rbind(rep(NA, 22)))
   }
   return(tbl.day)
 }
@@ -55,9 +55,7 @@ by.day.data <- data.frame(matrix(unlist(by.day.data),
 # Объединить массивы
 by.day.data <- cbind(session.data, by.day.data)
 colnames(by.day.data) <- c("camp_name", "date_in", "date_out",
-                           as.character(1:21))
-# Общее количество обращений
-by.day.data$dys_sum <- rowSums(by.day.data[c(4:24)])
+                           as.character(1:21), "dys_sum")
 
 # Обработка дат
 by.day.data$date_in <- as.Date(by.day.data$date_in, 
@@ -77,3 +75,10 @@ by.day.data$kids <- ind2019$fact_total
 
 # Удаление NA
 by.day.data <- na.omit(by.day.data)
+
+# Переименование результирующей переменной -----------------------------
+by.day.data -> dys.daily.ind2019
+rm(list = setdiff(ls(), "dys.daily.ind2019"))
+
+# Сохранение результатов -----------------------------------------------
+save(dys.daily.ind2019, file = "~/data/dys_daily_ind2019")

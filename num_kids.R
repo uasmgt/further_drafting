@@ -14,5 +14,6 @@ EstimateKids <- function(x){
     count(id1)
   x2$n <- set2$n[match(x2$id1, set2$id1)]
   x <- rbind(x1, x2)
+  x <- x %>% select(-id1, -id2)
   return(x)
 }
